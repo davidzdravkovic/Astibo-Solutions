@@ -1,6 +1,6 @@
 # Company
 
-- **Brand:** Asibo Solutions. **CONFIRMED** (provided by owner).
+- **Brand:** Astibo Solutions. **CONFIRMED** (provided by owner).
 - **Legal business name / registration:** **OPEN** — do not assume the brand is the registered legal entity.
 - **Positioning (PROPOSED):** Independent software-engineering partner helping growing businesses plan, design, and build useful digital products.
 - **Operating model:** One-person business. **CONFIRMED** (provided by owner). For agent context only: informs capacity, truthfulness, and what not to invent. Not a required public headline or repeated site claim.

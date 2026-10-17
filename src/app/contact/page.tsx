@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Discuss a project",
   description:
-    "Tell Asibo Solutions what you are trying to do, or ask for a short introductory call about your project.",
+    "Tell Astibo Solutions what you are trying to do, or ask for a short introductory call about your project.",
 };
 
 export default function ContactPage() {

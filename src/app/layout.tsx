@@ -19,8 +19,8 @@ const body = Instrument_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Asibo Solutions | Independent software engineer",
-    template: "%s | Asibo Solutions",
+    default: "Astibo Solutions | Independent software engineer",
+    template: "%s | Astibo Solutions",
   },
   description: site.description,
 };

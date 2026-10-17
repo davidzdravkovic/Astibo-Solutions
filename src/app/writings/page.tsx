@@ -6,7 +6,7 @@ import { writings } from "@/content/site";
 export const metadata: Metadata = {
   title: "Writings",
   description:
-    "Engineering notes from Asibo Solutions — how realtime, full-stack and multi-surface problems were solved.",
+    "Engineering notes from Astibo Solutions — how realtime, full-stack and multi-surface problems were solved.",
 };
 
 export default function WritingsPage() {

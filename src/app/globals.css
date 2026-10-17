@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design tokens for Asibo Solutions (version 1, light theme only).
+ * Design tokens for Astibo Solutions (version 1, light theme only).
  *   paper  #F3F5F8  page background, cool and slightly blue-grey
  *   ink    #0E1B2C  text and drawn lines
  *   slate  #44546A  secondary text (7:1 on paper)
@@ -205,8 +205,13 @@
     color: var(--foreground);
     /* One step darker than page paper / band — still the same cool blue-grey family */
     background: #d9e0ea;
-    min-height: min(88vh, 52rem);
     border-bottom: 1px solid var(--border);
+  }
+
+  @media (min-width: 64rem) {
+    .hero {
+      min-height: min(88vh, 52rem);
+    }
   }
 
   .hero__bg {
@@ -264,7 +269,12 @@
 
   .hero__title-tail {
     display: inline;
-    white-space: nowrap;
+  }
+
+  @media (min-width: 40rem) {
+    .hero__title-tail {
+      white-space: nowrap;
+    }
   }
 
   .hero__accent {
@@ -403,6 +413,76 @@
     .hero-stage__body {
       grid-template-columns: 1.15fr 0.95fr;
       padding: 1.1rem;
+    }
+  }
+
+  /* Compact stage on phones — avoid a tall stacked card under the copy */
+  @media (max-width: 39.99rem) {
+    .hero__title {
+      font-size: clamp(1.85rem, 8.5vw, 2.35rem);
+    }
+
+    .hero-stage {
+      perspective: none;
+      max-width: 22rem;
+      margin-inline: auto;
+    }
+
+    .hero-stage__glow {
+      inset: 16% 10% 10%;
+      filter: blur(28px);
+      opacity: 0.55;
+    }
+
+    .hero-stage__panel {
+      transform: none;
+      animation: hero-float-mobile 7s ease-in-out infinite;
+    }
+
+    .hero-stage__chrome {
+      padding: 0.65rem 0.85rem;
+    }
+
+    .hero-stage__body {
+      gap: 0.65rem;
+      padding: 0.75rem;
+      grid-template-columns: 1fr;
+    }
+
+    .hero-stage__chat,
+    .hero-stage__progress,
+    .hero-stage__chart {
+      padding: 0.65rem;
+    }
+
+    .hero-stage__chart {
+      display: none;
+    }
+
+    .hero-stage__msgs {
+      min-height: 0;
+      gap: 0.4rem;
+    }
+
+    .hero-stage__msg:nth-child(n + 3) {
+      display: none;
+    }
+
+    .hero-stage__typing {
+      display: none;
+    }
+
+    .hero-stage__bubble {
+      font-size: 0.78rem;
+      padding: 0.35rem 0.55rem;
+    }
+
+    .hero-stage__side {
+      gap: 0.65rem;
+    }
+
+    .hero-stage__progress ul {
+      gap: 0.55rem;
     }
   }
 
@@ -610,6 +690,16 @@
         rotateY(calc(-6deg + var(--tilt-y)))
         rotateX(calc(3deg + var(--tilt-x)))
         translateY(-14px);
+    }
+  }
+
+  @keyframes hero-float-mobile {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
     }
   }
 

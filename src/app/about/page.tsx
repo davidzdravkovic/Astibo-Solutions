@@ -6,7 +6,7 @@ import { goodFit, notAFit, principles, site } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "How Asibo Solutions works with clients, who a project suits, and who it does not.",
+    "How Astibo Solutions works with clients, who a project suits, and who it does not.",
 };
 
 export default function AboutPage() {

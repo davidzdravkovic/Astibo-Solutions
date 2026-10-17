@@ -8,10 +8,10 @@
  */
 
 export const site = {
-  name: "Asibo Solutions",
+  name: "Astibo Solutions",
   email: "davidzdravkovic21@gmail.com",
   description:
-    "Asibo Solutions helps growing businesses plan, design and build websites, web applications and first versions of products.",
+    "Astibo Solutions helps growing businesses plan, design and build websites, web applications and first versions of products.",
 } as const;
 
 export const nav = [

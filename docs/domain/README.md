@@ -1,6 +1,6 @@
 # Domain documentation
 
-These files define Asibo Solutions' business context and the required behavior of its marketing site. Read only the files relevant to the task; do not automatically load every file for unrelated work.
+These files define Astibo Solutions' business context and the required behavior of its marketing site. Read only the files relevant to the task; do not automatically load every file for unrelated work.
 
 ## How to use them
 - `company.md`, `audience.md`, `services.md`: who the business is for and what it offers.
@@ -23,6 +23,6 @@ Service categories are informed by [Afillix](https://www.afillix.com/): UX/UI de
 
 References:
 - Afillix, service categories: https://www.afillix.com/
-- Afillix's public service structure supports the categories above; its team-size, client, and result claims are not transferable to Asibo Solutions.
+- Afillix's public service structure supports the categories above; its team-size, client, and result claims are not transferable to Astibo Solutions.
 
 This is a starting specification, not legal advice or proof that any proposed service or tool has been selected.

@@ -17,7 +17,7 @@ export function HomeHero() {
     <section className="hero">
       <div className="hero__bg" aria-hidden="true" />
       <div className="hero__grid" aria-hidden="true" />
-      <div className="wrap relative grid items-center gap-12 py-16 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:py-24">
+      <div className="wrap relative grid items-center gap-8 py-10 md:gap-12 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:py-24">
         <div className="hero__copy">
           <p
             className="hero__eyebrow hero__enter"

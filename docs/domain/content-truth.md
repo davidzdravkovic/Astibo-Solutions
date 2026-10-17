@@ -1,7 +1,7 @@
 # Content truth and proof
 
 ## Verified facts currently available
-- Brand name supplied by owner: **Asibo Solutions**.
+- Brand name supplied by owner: **Astibo Solutions**.
 - The business is currently operated by one person.
 - The owner wants to offer software-engineering services including website/web development, mobile experiences, UI/UX, MVP development, and technical consulting/review. Treat individual offers as proposed until the owner confirms actual scope and capability.
 
