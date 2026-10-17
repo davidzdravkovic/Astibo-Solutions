@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-/** GitHub project Pages URL: https://davidzdravkovic.github.io/Astibo-Solutions/ */
-const repoName = "Astibo-Solutions";
+/** GitHub project Pages URL: https://davidzdravkovic.github.io/Asibo-Solutions/ */
+const repoName = "Asibo-Solutions";
 const isGithubPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
