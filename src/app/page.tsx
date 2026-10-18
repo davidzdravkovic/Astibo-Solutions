@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { CapabilityMarquee } from "@/components/capability-marquee";
 import { HomeHero } from "@/components/home-hero";
+import { ProcessTimeline } from "@/components/process-timeline";
 import { Reveal } from "@/components/reveal";
+import { ServiceRail } from "@/components/service-rail";
 import { WorkProof } from "@/components/work-proof";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -13,18 +16,27 @@ import {
 import { cn } from "@/lib/utils";
 
 export default function HomePage() {
-  const overview = [
-    ...mainServices.map((s) => ({ name: s.name, body: s.summary })),
-    ...supportingServices,
+  const serviceItems = [
+    ...mainServices.map((s) => ({
+      name: s.name,
+      body: s.summary,
+      href: `/services/#${s.slug}`,
+    })),
+    ...supportingServices.map((s) => ({
+      name: s.name,
+      body: s.body,
+      href: "/services/",
+    })),
   ];
 
   return (
     <>
       <HomeHero />
+      <CapabilityMarquee />
 
       <section className="border-t border-rule">
         <div className="wrap grid gap-8 py-16 md:py-24 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
-          <Reveal>
+          <Reveal variant="mask" className="lg:sticky lg:top-28 lg:self-start">
             <h2 className="text-3xl font-semibold md:text-4xl">
               Situations we can help with
             </h2>
@@ -36,7 +48,7 @@ export default function HomePage() {
                 as="li"
                 delay={90 * index}
                 className={cn(
-                  "border-ink py-5 md:py-6",
+                  "situation border-ink py-5 md:py-6",
                   index === 0 ? "border-t-0 pt-0 md:pt-0" : "border-t",
                 )}
               >
@@ -48,48 +60,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t border-rule bg-band">
-        <div className="wrap py-16 md:py-24">
-          <Reveal>
-            <h2 className="text-3xl font-semibold md:text-4xl">
-              What we work on
-            </h2>
-          </Reveal>
-          <ul className="mt-10 border-b border-ink">
-            {overview.map((item, index) => (
-              <Reveal
-                key={item.name}
-                as="li"
-                delay={60 * index}
-                className={cn(
-                  "grid gap-2 border-t border-ink py-6 md:grid-cols-[1fr_1.4fr] md:gap-10",
-                  index < mainServices.length && "md:py-8",
-                )}
-              >
-                <h3
-                  className={cn(
-                    "font-semibold",
-                    index < mainServices.length
-                      ? "text-2xl md:text-3xl"
-                      : "text-xl md:text-2xl",
-                  )}
-                >
-                  {item.name}
-                </h3>
-                <p className="text-slate">{item.body}</p>
-              </Reveal>
-            ))}
-          </ul>
-          <Reveal className="mt-10" delay={80}>
-            <Link
-              href="/services/"
-              className={buttonVariants({ size: "lg", variant: "outline" })}
-            >
-              Read about each service
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+      <ServiceRail items={serviceItems} />
 
       <WorkProof />
 
@@ -104,28 +75,7 @@ export default function HomePage() {
               payment terms, are agreed in writing before any work starts.
             </p>
           </Reveal>
-          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
-            {process.map((step, index) => (
-              <Reveal
-                key={step.title}
-                as="li"
-                delay={90 * index}
-                className="border-t-2 border-ink pt-4"
-              >
-                <span
-                  aria-hidden="true"
-                  className="font-heading text-3xl font-bold text-blue"
-                >
-                  {index + 1}
-                </span>
-                <h3 className="mt-2 text-xl font-semibold">
-                  <span className="sr-only">Step {index + 1}: </span>
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-[0.97rem] text-slate">{step.body}</p>
-              </Reveal>
-            ))}
-          </ol>
+          <ProcessTimeline steps={process} />
         </div>
       </section>
 
@@ -152,8 +102,8 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <section className="on-dark bg-ink text-paper">
-        <Reveal className="wrap py-16 md:py-24">
+      <section className="on-dark cta-band bg-ink text-paper">
+        <Reveal variant="mask" className="wrap relative py-16 md:py-24">
           <h2 className="max-w-2xl text-3xl font-semibold md:text-5xl">
             Have a project in mind?
           </h2>

@@ -16,6 +16,13 @@ type Props = {
   delay?: number;
   /** Render as a different element (use `li` inside lists). */
   as?: ElementType;
+  /**
+   * up    – fade and rise (default)
+   * scale – fade and settle from slightly smaller (cards)
+   * mask  – headline wipes in from below a clip edge
+   * fade  – opacity only
+   */
+  variant?: "up" | "scale" | "mask" | "fade";
 };
 
 /**
@@ -26,6 +33,7 @@ export function Reveal({
   className,
   delay = 0,
   as: Tag = "div",
+  variant = "up",
 }: Props) {
   const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
@@ -54,11 +62,33 @@ export function Reveal({
     return () => observer.disconnect();
   }, []);
 
+  const delayStyle = delay ? { transitionDelay: `${delay}ms` } : undefined;
+
+  // The mask variant clips an inner wrapper, so the observed element is never
+  // fully clipped (Chrome treats a fully clipped target as not intersecting).
+  if (variant === "mask") {
+    return (
+      <Tag
+        ref={ref}
+        className={cn("reveal-mask", shown && "reveal--in", className)}
+      >
+        <div className="reveal-mask__inner" style={delayStyle}>
+          {children}
+        </div>
+      </Tag>
+    );
+  }
+
   return (
     <Tag
       ref={ref}
-      className={cn("reveal", shown && "reveal--in", className)}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      className={cn(
+        "reveal",
+        variant !== "up" && `reveal--${variant}`,
+        shown && "reveal--in",
+        className,
+      )}
+      style={delayStyle}
     >
       {children}
     </Tag>

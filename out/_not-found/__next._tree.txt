@@ -1,4 +1,4 @@
-:HL["/Asibo-Solutions/_next/static/chunks/0bft8edf6eu7y.css","style"]
+:HL["/Asibo-Solutions/_next/static/chunks/221eqd8bp3l8u.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"jsyWEDi2rAWVD7rbytvTm","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"TPxv_bNMXhzClFI18JSSy","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

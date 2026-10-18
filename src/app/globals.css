@@ -752,6 +752,273 @@
     }
   }
 
+  /* —— Service cards (horizontal rail) —— */
+  .service-rail__nav {
+    display: inline-flex;
+    height: 2.75rem;
+    width: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(169 192 255 / 0.35);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.04);
+    color: var(--blue-soft);
+    font-size: 1.15rem;
+    line-height: 1;
+    transition:
+      background 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      opacity 180ms ease;
+  }
+
+  .service-rail__nav:hover:not(:disabled) {
+    background: rgb(255 255 255 / 0.12);
+    border-color: rgb(169 192 255 / 0.6);
+    color: #fff;
+  }
+
+  .service-rail__nav:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .service-rail__bar {
+    transform: scaleX(0);
+    transition: transform 120ms linear;
+  }
+
+  .service-card {
+    transition: transform 360ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  /* Full-bleed row whose first card lines up with the .wrap content edge */
+  .rail-scroller {
+    padding-inline: max(1.25rem, calc((100% - 72rem) / 2 + 1.25rem));
+    scroll-padding-inline: max(1.25rem, calc((100% - 72rem) / 2 + 1.25rem));
+  }
+
+  @media (min-width: 48rem) {
+    .rail-scroller {
+      padding-inline: max(2rem, calc((100% - 72rem) / 2 + 2rem));
+      scroll-padding-inline: max(2rem, calc((100% - 72rem) / 2 + 2rem));
+    }
+  }
+
+  /* Gentle settle on a card (proximity, never mandatory) */
+  .rail-scroller {
+    scroll-snap-type: x proximity;
+  }
+
+  /* Pinned row starts on the same left edge as .wrap content (pinned mode is >= 64rem) */
+  .rail-track {
+    margin-left: max(2rem, calc((100% - 72rem) / 2 + 2rem));
+  }
+
+  /* Big cards; sizes follow viewport height so the pinned stage always fits one screen */
+  .service-card {
+    width: clamp(19rem, 30vw, 32rem);
+  }
+
+  .service-card__art {
+    width: clamp(7.5rem, 24vh, 20rem);
+    aspect-ratio: 1;
+  }
+
+  .service-card__title {
+    font-size: clamp(1.6rem, 3.8vh, 2.4rem);
+  }
+
+  /* Short screens: drop the subtitle so the pinned stage fits */
+  @media (max-height: 900px) {
+    .rail-sub {
+      display: none;
+    }
+  }
+
+  .service-art {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transition: scale 500ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  .art-float {
+    animation: art-float 6s ease-in-out infinite;
+  }
+
+  @media (hover: hover) {
+    .service-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .service-card:hover .service-art {
+      scale: 1.07;
+    }
+  }
+
+  @keyframes art-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(calc(var(--float, 7px) * -1));
+    }
+  }
+
+  /* —— Scroll progress —— */
+  .scroll-progress {
+    pointer-events: none;
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 60;
+    height: 3px;
+  }
+
+  .scroll-progress__bar {
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--primary), var(--blue-soft));
+  }
+
+  /* —— Capability ticker —— */
+  .marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    background: var(--background);
+    padding-block: 1.1rem;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 48s linear infinite;
+  }
+
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+
+  .marquee__group {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .marquee__item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+  }
+
+  .marquee__item::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-inline: 1.75rem;
+    border-radius: 999px;
+    background: var(--primary);
+    opacity: 0.55;
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* —— Process steps (light up as you scroll) —— */
+  .process-step {
+    position: relative;
+    border-top: 2px solid var(--border);
+    padding-top: 1rem;
+  }
+
+  .process-step__bar {
+    position: absolute;
+    inset: -2px 0 auto 0;
+    height: 2px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 900ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  .process-step__num {
+    display: inline-block;
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--muted-foreground);
+    transition:
+      color 500ms ease,
+      transform 600ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  .process-step--on .process-step__bar {
+    transform: scaleX(1);
+  }
+
+  .process-step--on .process-step__num {
+    color: var(--primary);
+    transform: translateY(-2px) scale(1.08);
+    transform-origin: left bottom;
+  }
+
+  /* —— Situations: quiet hover feedback —— */
+  .situation h3 {
+    transition:
+      color 200ms ease,
+      transform 300ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  @media (hover: hover) {
+    .situation:hover h3 {
+      color: var(--primary);
+      transform: translateX(6px);
+    }
+  }
+
+  /* —— Closing CTA: slow drifting light —— */
+  .cta-band {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-band::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: -30% -10% auto auto;
+    width: min(60rem, 90vw);
+    height: 36rem;
+    background: radial-gradient(closest-side, rgb(61 109 245 / 0.28), transparent);
+    animation: cta-drift 16s ease-in-out infinite alternate;
+  }
+
+  @keyframes cta-drift {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+      transform: translate3d(-12%, 14%, 0) scale(1.15);
+    }
+  }
+
   /* —— Scroll reveals —— */
   .reveal {
     opacity: 0;
@@ -762,9 +1029,31 @@
     will-change: opacity, transform;
   }
 
+  .reveal--scale {
+    transform: translateY(28px) scale(0.95);
+  }
+
+  .reveal--fade {
+    transform: none;
+  }
+
+  /* Headline wipes up from behind a clip edge */
   .reveal--in {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .reveal-mask__inner {
+    transform: translateY(0.35em);
+    clip-path: inset(0 0 100% 0);
+    transition:
+      clip-path 900ms cubic-bezier(0.22, 0.8, 0.2, 1),
+      transform 900ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  .reveal-mask.reveal--in .reveal-mask__inner {
+    transform: translateY(0);
+    clip-path: inset(-0.1em -0.1em -0.4em -0.1em);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -801,6 +1090,29 @@
     .reveal {
       opacity: 1;
       transform: none;
+      transition: none;
+    }
+
+    .reveal-mask__inner {
+      transform: none;
+      clip-path: none;
+      transition: none;
+    }
+
+    .marquee__track,
+    .cta-band::before {
+      animation: none;
+    }
+
+    .art-float {
+      animation: none;
+    }
+
+    .service-card,
+    .service-art,
+    .process-step__bar,
+    .process-step__num,
+    .situation h3 {
       transition: none;
     }
   }

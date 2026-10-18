@@ -156,6 +156,17 @@ export const writings: Writing[] = [
 ];
 
 /** Situations that bring a business to software help (docs/domain/audience.md). */
+/** Short capability labels for the home ticker. */
+export const capabilityTicker = [
+  "Websites",
+  "Web applications",
+  "MVPs and first versions",
+  "UX and UI design",
+  "Mobile",
+  "Engineering review",
+  "Handover and documentation",
+] as const;
+
 export const situations = [
   {
     title: "You need a website that does its job",

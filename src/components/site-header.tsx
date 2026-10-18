@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -20,11 +21,38 @@ export function SiteHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // Hide on scroll down, return on scroll up (or when anything inside is focused).
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const y = window.scrollY;
+      if (y < 80 || y < lastY - 6) setHidden(false);
+      else if (y > lastY + 6 && y > 160) setHidden(true);
+      if (Math.abs(y - lastY) > 6) lastY = y;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   const isCurrent = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rule bg-paper/95 text-ink backdrop-blur-md">
+    <header
+      onFocusCapture={() => setHidden(false)}
+      className={cn(
+        "sticky top-0 z-50 border-b border-rule bg-paper/95 text-ink backdrop-blur-md transition-transform duration-300 ease-out motion-reduce:transition-none",
+        hidden && !open && "-translate-y-full",
+      )}
+    >
       <div className="wrap flex h-16 items-center justify-between md:h-20">
         <Link
           href="/"

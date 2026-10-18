@@ -51,6 +51,12 @@ export function HeroStage() {
       const tgt = targetRef.current;
       cur.x += (tgt.x - cur.x) * 0.08;
       cur.y += (tgt.y - cur.y) * 0.08;
+      const root = rootRef.current;
+      if (root) {
+        // Slower than the page: the stage drifts down as you scroll away.
+        const drift = Math.min(Math.max(window.scrollY, 0), 700) * 0.1;
+        root.style.translate = `0 ${drift.toFixed(1)}px`;
+      }
       const panel = panelRef.current;
       if (panel) {
         panel.style.setProperty("--tilt-x", `${cur.y.toFixed(2)}deg`);
