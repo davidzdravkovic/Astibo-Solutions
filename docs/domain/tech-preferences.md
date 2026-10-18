@@ -10,7 +10,7 @@ This file records implementation decisions. An example is not a decision; items 
 - **Domain / DNS:** OPEN.
 - **Email delivery provider:** OPEN.
 - **Booking provider:** OPEN.
-- **Lead destination (email / CRM):** davidzdravkovic21@gmail.com via `mailto:` in version 1. **CONFIRMED** (provided by owner).
+- **Lead destination (email / CRM):** hello@astibosoft.com via `mailto:` in version 1. **CONFIRMED** (provided by owner).
 - **Analytics / consent approach:** OPEN.
 - **CMS or content editing needs:** OPEN.
 - **Repository / CI / preview deployments:** OPEN.

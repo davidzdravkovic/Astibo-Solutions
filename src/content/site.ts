@@ -9,7 +9,7 @@
 
 export const site = {
   name: "Astibo Solutions",
-  email: "davidzdravkovic21@gmail.com",
+  email: "hello@astibosoft.com",
   description:
     "Astibo Solutions helps growing businesses plan, design and build websites, web applications and first versions of products.",
 } as const;

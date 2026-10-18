@@ -18,7 +18,7 @@ Collect enough information to decide whether a conversation is useful without ma
 - Collect only data needed for the inquiry and publish an appropriate privacy notice before launch.
 
 ## Version 1 decision (CONFIRMED by owner)
-Version 1 is static files with no backend. The form validates in the browser, then opens the visitor's email app with a prefilled message addressed to davidzdravkovic21@gmail.com (`mailto:`). Nothing is stored or sent by the site itself, so server-side validation, rate limiting, spam protection and auto-reply do not apply until a backend exists. The page must say plainly that nothing is sent until the visitor presses send in their email app. Budget and timing fields are not included in version 1.
+Version 1 is static files with no backend. The form validates in the browser, then opens the visitor's email app with a prefilled message addressed to hello@astibosoft.com (`mailto:`). Nothing is stored or sent by the site itself, so server-side validation, rate limiting, spam protection and auto-reply do not apply until a backend exists. The page must say plainly that nothing is sent until the visitor presses send in their email app. Budget and timing fields are not included in version 1.
 
 ## OPEN decisions
 Destination, email provider, spam mechanism, auto-reply wording, retention period, privacy notice, and whether budget/timing fields are enabled.
