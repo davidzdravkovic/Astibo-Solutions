@@ -1,6 +1,6 @@
 import { capabilityTicker } from "@/content/site";
 
-/** Slow, continuous strip of what Astibo builds. Decorative; services are listed below. */
+/** Slow, continuous strip of what Astibosoft builds. Decorative; services are listed below. */
 export function CapabilityMarquee() {
   return (
     <div className="marquee" aria-hidden="true">

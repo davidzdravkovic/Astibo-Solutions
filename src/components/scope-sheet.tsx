@@ -66,7 +66,7 @@ export function ScopeSheet() {
               </div>
               <div className="border-r border-rule px-5 py-3">
                 <p className="text-slate">Prepared by</p>
-                <p className="font-medium">Astibo Solutions</p>
+                <p className="font-medium">Astibosoft</p>
               </div>
               <div className="px-5 py-3">
                 <p className="text-slate">Status</p>

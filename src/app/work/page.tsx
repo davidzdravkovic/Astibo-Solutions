@@ -9,7 +9,7 @@ import { projects } from "@/content/site";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Working examples of engineering skills from Astibo Solutions — messaging, full-stack apps, and first product surfaces.",
+    "Working examples of engineering skills from Astibosoft — messaging, full-stack apps, and first product surfaces.",
 };
 
 export default function WorkPage() {

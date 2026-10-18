@@ -44,7 +44,7 @@ export function SiteFooter() {
 
       <Reveal className="footer-mark mt-6">
         <span aria-hidden="true" className="wrap">
-          {site.name.split(" ")[0]}
+          {site.name}
         </span>
       </Reveal>
     </footer>

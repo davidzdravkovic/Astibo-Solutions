@@ -9,7 +9,7 @@ import {
 
 /**
  * Animated product stage for the home hero — danub.io-style floating panel,
- * built from Astibo product surfaces (messaging + live progress), not generic
+ * built from Astibosoft product surfaces (messaging + live progress), not generic
  * SaaS charts.
  */
 
@@ -100,7 +100,7 @@ export function HeroStage() {
           <span />
           <span />
           <span />
-          <p className="hero-stage__title">astibo · live surfaces</p>
+          <p className="hero-stage__title">Astibosoft · live surfaces</p>
         </div>
 
         <div className="hero-stage__body">
