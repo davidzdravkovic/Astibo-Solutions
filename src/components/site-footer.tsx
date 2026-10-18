@@ -6,23 +6,17 @@ export function SiteFooter() {
   return (
     <footer className="on-dark bg-ink text-paper">
       <div className="wrap border-t border-white/15 pt-14 md:pt-20">
-        <div className="grid gap-12 md:grid-cols-[1.6fr_1fr]">
-          <div>
+        <div className="flex flex-col gap-12 sm:flex-row sm:items-start sm:justify-between sm:gap-16">
+          <div className="max-w-md">
             <p className="font-heading text-lg font-semibold text-blue-soft">
               {site.name}
             </p>
-            <p className="mt-2 max-w-sm text-white/70">
+            <p className="mt-2 text-white/70">
               Software planning, design and delivery for growing businesses.
             </p>
-            <a
-              className="link-draw mt-8 inline-block break-all font-heading text-[clamp(1.4rem,3.4vw,2.6rem)] font-semibold leading-tight"
-              href={`mailto:${site.email}`}
-            >
-              {site.email}
-            </a>
           </div>
 
-          <nav aria-label="Footer">
+          <nav aria-label="Footer" className="sm:min-w-[10rem] sm:text-right">
             <p className="font-heading font-semibold text-blue-soft">Pages</p>
             <ul className="mt-3 space-y-1">
               {nav.map((item) => (
@@ -39,13 +33,20 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p className="mt-14 text-sm text-white/60">&copy; 2026 {site.name}</p>
+        <a
+          className="link-draw mt-12 block break-all text-center font-heading text-[clamp(1.25rem,3.2vw,2.25rem)] font-semibold leading-tight sm:mt-16"
+          href={`mailto:${site.email}`}
+        >
+          {site.email}
+        </a>
+
+        <p className="mt-10 text-center text-sm text-white/60">
+          &copy; 2026 {site.name}
+        </p>
       </div>
 
-      <Reveal className="footer-mark mt-6">
-        <span aria-hidden="true" className="wrap">
-          {site.name}
-        </span>
+      <Reveal className="footer-mark mt-8">
+        <span aria-hidden="true">{site.name}</span>
       </Reveal>
     </footer>
   );
