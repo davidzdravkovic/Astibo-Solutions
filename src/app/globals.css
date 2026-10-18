@@ -1391,25 +1391,42 @@
       opacity 200ms ease;
   }
 
-  /* —— Footer wordmark: tone on tone, cropped at the bottom —— */
+  /* —— Footer wordmark: full-bleed signature, cropped and fading out —— */
   .footer-mark {
+    position: relative;
     overflow: hidden;
     pointer-events: none;
     user-select: none;
+    margin-top: 0.25rem;
+    padding-inline: 3vw;
+    border-top: 1px solid rgb(255 255 255 / 0.08);
     text-align: center;
     font-family: var(--font-heading);
-    font-size: clamp(3.25rem, 12vw, 10rem);
+    font-size: clamp(4.5rem, 15.6vw, 20rem);
     font-weight: 700;
-    line-height: 0.82;
-    letter-spacing: -0.04em;
-    color: #172a45;
+    line-height: 0.78;
+    letter-spacing: -0.05em;
   }
 
   .footer-mark span {
     display: block;
-    padding-inline: 1.25rem;
+    width: max-content;
+    max-width: none;
+    margin-inline: auto;
     padding-top: 0.12em;
-    margin-bottom: -0.08em;
+    margin-bottom: -0.14em;
+    white-space: nowrap;
+    background: linear-gradient(
+      180deg,
+      rgb(226 234 248 / 0.5) 0%,
+      rgb(138 168 210 / 0.26) 46%,
+      rgb(40 68 100 / 0.08) 78%,
+      transparent 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 
   /* —— Scroll reveals —— */
