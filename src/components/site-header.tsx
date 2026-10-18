@@ -78,16 +78,16 @@ export function SiteHeader() {
       <div className="wrap flex h-16 items-center justify-between md:h-20">
         <Link
           href="/"
-          className="font-heading text-xl font-bold tracking-tight"
+          className="shrink-0 whitespace-nowrap font-heading text-xl font-bold tracking-tight"
           onClick={() => setOpen(false)}
         >
           {site.name}
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-5 md:flex lg:gap-8">
           <ul
             ref={listRef}
-            className="relative flex items-center gap-8 pb-1"
+            className="relative flex items-center gap-4 pb-1 lg:gap-8"
             onMouseLeave={() => setHover(null)}
             onBlur={() => setHover(null)}
           >

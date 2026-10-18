@@ -17,8 +17,8 @@ export function HomeHero() {
     <section className="hero">
       <div className="hero__bg" aria-hidden="true" />
       <div className="hero__grid" aria-hidden="true" />
-      <div className="wrap relative grid items-center gap-8 py-10 md:gap-12 md:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:py-24">
-        <div className="hero__copy">
+      <div className="wrap relative grid items-center gap-7 py-8 md:gap-12 md:py-16 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:py-24">
+        <div className="hero__copy order-2 lg:order-none">
           <p
             className="hero__eyebrow hero__enter"
             style={{ animationDelay: "80ms" }}
@@ -60,7 +60,7 @@ export function HomeHero() {
         </div>
 
         <div
-          className="hero__stage-wrap hero__enter"
+          className="hero__stage-wrap hero__enter order-1 lg:order-none"
           style={{ animationDelay: "280ms" }}
         >
           <HeroStage />

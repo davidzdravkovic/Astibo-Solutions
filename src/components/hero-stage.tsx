@@ -54,7 +54,10 @@ export function HeroStage() {
       const root = rootRef.current;
       if (root) {
         // Slower than the page: the stage drifts down as you scroll away.
-        const drift = Math.min(Math.max(window.scrollY, 0), 700) * 0.1;
+        // Wide screens only: on a stacked phone layout it just opens a gap
+        // between the card and the copy.
+        const wide = window.innerWidth >= 1024;
+        const drift = wide ? Math.min(Math.max(window.scrollY, 0), 700) * 0.1 : 0;
         root.style.translate = `0 ${drift.toFixed(1)}px`;
       }
       const panel = panelRef.current;
@@ -70,6 +73,7 @@ export function HeroStage() {
   }, []);
 
   const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse") return;
     const root = rootRef.current;
     if (!root) return;
     const rect = root.getBoundingClientRect();

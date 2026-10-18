@@ -1,7 +1,7 @@
 :HL["/Astibo-Solutions/_next/static/chunks/339qm2753qezc.css","style"]
-:HL["/Astibo-Solutions/_next/static/chunks/1xv9mbbp7i1u5.css","style"]
+:HL["/Astibo-Solutions/_next/static/chunks/08fwns0b-rzbb.css","style"]
 :HL["/Astibo-Solutions/_next/static/media/017d9bea37084d9b-s.p.41rroleoq1br7.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/Astibo-Solutions/_next/static/media/f06bf9da926bae75-s.p.2874ccu1_u7jf.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"services","h":96,"c":"$Q2"}]]
-0:{"b":"W2LULuD6qeL0kXdVnkSTX","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"3fO-uGRP-XWAjVW_5bZy8","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
