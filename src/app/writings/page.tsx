@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GoArrow } from "@/components/go-arrow";
+import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { writings } from "@/content/site";
 
@@ -12,57 +14,49 @@ export const metadata: Metadata = {
 export default function WritingsPage() {
   return (
     <>
-      <section className="wrap py-14 md:py-20">
-        <h1 className="max-w-3xl text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[1.05]">
-          Our notes.
-        </h1>
-        <p className="measure mt-6 text-xl text-slate">
+      <PageHeader title="Our notes." art={4}>
+        <p>
           Engineering notes on real work: the problem, the approach, and how it
           was solved.
         </p>
-      </section>
+      </PageHeader>
 
-      <section className="border-t border-rule">
-        <ul className="wrap py-4 md:py-8">
+      <section>
+        <ul className="wrap work-list py-6 md:py-12">
           {writings.map((post, index) => (
             <Reveal
               key={post.slug}
               as="li"
+              variant="fade"
               delay={70 * index}
-              className={
-                index === 0
-                  ? "border-t-0 py-8 md:py-10"
-                  : "border-t border-ink py-8 md:py-10"
-              }
+              className="work-row draw-rule"
             >
-              <article>
+              <article className="relative grid items-center gap-x-10 gap-y-3 py-9 md:grid-cols-[11rem_1fr_auto] md:py-12">
                 <p className="text-sm font-medium text-slate">
                   {post.category}
-                  <span aria-hidden="true"> · </span>
-                  {post.dateLabel}
+                  <span className="block md:mt-1">{post.dateLabel}</span>
                 </p>
-                <h2 className="mt-2 font-heading text-2xl font-bold md:text-3xl">
-                  <Link
-                    href={`/writings/${post.slug}/`}
-                    className="underline-offset-4 hover:underline"
-                  >
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className="measure mt-3 text-lg text-slate">{post.summary}</p>
-                <p className="mt-4">
-                  <Link
-                    href={`/writings/${post.slug}/`}
-                    className="link font-medium"
-                  >
-                    Read note
-                    <span aria-hidden="true"> →</span>
-                  </Link>
-                </p>
+                <div>
+                  <h2 className="work-row__cap font-heading text-[clamp(1.6rem,3vw,2.5rem)] font-bold leading-[1.1]">
+                    <Link
+                      href={`/writings/${post.slug}/`}
+                      className="after:absolute after:inset-0 after:content-['']"
+                    >
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <p className="measure mt-3 text-lg text-slate">{post.summary}</p>
+                </div>
+                <span className="hidden md:block">
+                  <GoArrow />
+                </span>
               </article>
             </Reveal>
           ))}
         </ul>
+        <div className="wrap">
+          <div className="h-px bg-ink" />
+        </div>
       </section>
     </>
   );

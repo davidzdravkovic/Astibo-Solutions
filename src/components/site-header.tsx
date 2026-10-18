@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { nav, site } from "@/content/site";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,9 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const listRef = useRef<HTMLUListElement>(null);
+  const [hover, setHover] = useState<number | null>(null);
+  const [bar, setBar] = useState({ x: 0, w: 0, show: false });
 
   useEffect(() => {
     if (!open) return;
@@ -45,6 +48,25 @@ export function SiteHeader() {
   const isCurrent = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  const activeIndex = nav.findIndex((item) => isCurrent(item.href));
+  const barIndex = hover ?? activeIndex;
+
+  const measure = useCallback(() => {
+    const li = listRef.current?.children[barIndex] as HTMLElement | undefined;
+    if (!li) {
+      setBar((b) => ({ ...b, show: false }));
+      return;
+    }
+    setBar({ x: li.offsetLeft, w: li.offsetWidth, show: true });
+  }, [barIndex]);
+
+  useEffect(() => {
+    measure();
+    window.addEventListener("resize", measure);
+    document.fonts?.ready.then(measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [measure]);
+
   return (
     <header
       onFocusCapture={() => setHidden(false)}
@@ -63,22 +85,39 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
-          <ul className="flex items-center gap-8">
-            {nav.map((item) => (
-              <li key={item.href}>
+          <ul
+            ref={listRef}
+            className="relative flex items-center gap-8 pb-1"
+            onMouseLeave={() => setHover(null)}
+            onBlur={() => setHover(null)}
+          >
+            {nav.map((item, index) => (
+              <li
+                key={item.href}
+                onMouseEnter={() => setHover(index)}
+                onFocus={() => setHover(index)}
+              >
                 <Link
                   href={item.href}
                   aria-current={isCurrent(item.href) ? "page" : undefined}
                   className={cn(
-                    "py-2 text-[0.95rem] font-medium underline-offset-[0.5em] hover:underline",
-                    isCurrent(item.href) &&
-                      "underline decoration-2 decoration-blue",
+                    "block py-2 text-[0.95rem] font-medium transition-colors",
+                    isCurrent(item.href) ? "text-ink" : "text-slate hover:text-ink",
                   )}
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
+            <span
+              aria-hidden="true"
+              className="nav-bar"
+              style={{
+                width: bar.w,
+                transform: `translateX(${bar.x}px)`,
+                opacity: bar.show ? 1 : 0,
+              }}
+            />
           </ul>
           <Link href="/contact/" className={buttonVariants()}>
             Discuss a project

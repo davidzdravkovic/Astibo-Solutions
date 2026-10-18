@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { CtaBand } from "@/components/cta-band";
+import { PageHeader } from "@/components/page-header";
+import { Reveal } from "@/components/reveal";
+import { ScrollFocus } from "@/components/scroll-focus";
 import { goodFit, notAFit, principles, site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -12,57 +14,84 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="wrap py-14 md:py-20">
-        <h1 className="max-w-3xl text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[1.05]">
-          How {site.name} works.
-        </h1>
-        <p className="measure mt-6 text-xl text-slate">
+      <PageHeader title={`How ${site.name} works.`} art={2}>
+        <p>
           An independent software practice for growing businesses: clear
           problems, written scope, incremental delivery and a handover that
           leaves you able to move on.
         </p>
-      </section>
+      </PageHeader>
 
-      <section className="border-t border-rule">
-        <div className="wrap grid gap-8 py-14 md:py-20 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
-          <h2 className="text-3xl font-semibold md:text-4xl">Working approach</h2>
-          <ul>
-            {principles.map((item) => (
+      <section>
+        <div className="wrap grid gap-10 py-20 md:py-32 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+          <Reveal variant="mask" className="lg:sticky lg:top-28 lg:self-start">
+            <h2 className="text-[clamp(2.2rem,4.6vw,4rem)] font-semibold leading-[1.04]">
+              Working approach
+            </h2>
+          </Reveal>
+          <ScrollFocus as="ul">
+            {principles.map((item, index) => (
               <li
                 key={item.title}
-                className="border-t border-ink py-5 first:border-t-0 first:pt-0 md:py-6 md:first:pt-0"
+                className={
+                  index === 0
+                    ? "focus-item pb-8 md:pb-10"
+                    : "focus-item border-t border-ink py-8 md:py-10"
+                }
               >
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className="measure mt-1 text-slate">{item.body}</p>
+                <h3 className="text-2xl font-semibold md:text-[1.9rem]">
+                  {item.title}
+                </h3>
+                <p className="measure mt-2 text-lg text-slate">{item.body}</p>
               </li>
             ))}
-          </ul>
+          </ScrollFocus>
         </div>
       </section>
 
-      <section className="border-t border-rule bg-band">
-        <div className="wrap py-14 md:py-20">
-          <h2 className="text-3xl font-semibold md:text-4xl">
-            Who this suits
-          </h2>
-          <div className="mt-10 grid gap-12 md:grid-cols-2 md:gap-16">
+      <section className="bg-band">
+        <div className="wrap py-20 md:py-32">
+          <Reveal variant="mask">
+            <h2 className="text-[clamp(2.2rem,5vw,4.25rem)] font-semibold leading-[1.04]">
+              Who this suits
+            </h2>
+          </Reveal>
+          <div className="mt-12 grid gap-14 md:grid-cols-2 md:gap-20">
             <div>
-              <h3 className="text-xl font-semibold">A good fit</h3>
+              <Reveal>
+                <h3 className="text-xl font-semibold text-primary">A good fit</h3>
+              </Reveal>
               <ul className="mt-4 border-b border-ink">
-                {goodFit.map((item) => (
-                  <li key={item} className="border-t border-ink py-3">
-                    {item}
-                  </li>
+                {goodFit.map((item, index) => (
+                  <Reveal
+                    key={item}
+                    as="li"
+                    variant="fade"
+                    delay={60 * index}
+                    className="draw-rule"
+                  >
+                    <p className="line-item py-4 text-lg">{item}</p>
+                  </Reveal>
                 ))}
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-semibold">Probably not a fit</h3>
+              <Reveal delay={100}>
+                <h3 className="text-xl font-semibold text-slate">
+                  Probably not a fit
+                </h3>
+              </Reveal>
               <ul className="mt-4 border-b border-ink">
-                {notAFit.map((item) => (
-                  <li key={item} className="border-t border-ink py-3">
-                    {item}
-                  </li>
+                {notAFit.map((item, index) => (
+                  <Reveal
+                    key={item}
+                    as="li"
+                    variant="fade"
+                    delay={60 * index + 100}
+                    className="draw-rule"
+                  >
+                    <p className="line-item py-4 text-lg text-slate">{item}</p>
+                  </Reveal>
                 ))}
               </ul>
             </div>
@@ -70,27 +99,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-rule">
-        <div className="wrap grid gap-6 py-14 md:py-20 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
-          <h2 className="text-3xl font-semibold md:text-4xl">
-            Ready to talk through a project?
-          </h2>
-          <div>
-            <p className="measure text-lg text-slate">
-              Share a few lines about what you are trying to do. That is enough
-              to start.
-            </p>
-            <p className="mt-8">
-              <Link
-                href="/contact/"
-                className={buttonVariants({ size: "lg" })}
-              >
-                Discuss a project
-              </Link>
-            </p>
-          </div>
-        </div>
-      </section>
+      <CtaBand
+        title="Ready to talk through a project?"
+        body="Share a few lines about what you are trying to do. That is enough to start."
+        showEmail={false}
+      />
     </>
   );
 }

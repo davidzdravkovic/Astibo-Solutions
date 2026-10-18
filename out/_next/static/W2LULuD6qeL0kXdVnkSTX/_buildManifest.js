@@ -3,8 +3,8 @@ self.__BUILD_MANIFEST = {
     "afterFiles": [],
     "beforeFiles": [
       {
-        "source": "/Asibo-Solutions//_next/:path+",
-        "destination": "/Asibo-Solutions/_next/:path+"
+        "source": "/Astibo-Solutions//_next/:path+",
+        "destination": "/Astibo-Solutions/_next/:path+"
       }
     ],
     "fallback": []

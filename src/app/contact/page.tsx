@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
+import { PageHeader } from "@/components/page-header";
+import { Reveal } from "@/components/reveal";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -10,45 +12,46 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="wrap py-14 md:py-20">
-      <h1 className="max-w-3xl text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[1.05]">
-        Discuss a project
-      </h1>
-      <p className="measure mt-6 text-xl text-slate">
-        A few sentences about the problem or idea is enough to start.
-      </p>
+    <>
+      <PageHeader title="Discuss a project" art={3}>
+        <p>A few sentences about the problem or idea is enough to start.</p>
+      </PageHeader>
 
-      <div className="mt-12 grid gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
-        <ContactForm />
+      <section className="wrap py-16 md:py-24">
+        <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
+          <Reveal>
+            <ContactForm />
+          </Reveal>
 
-        <aside className="space-y-10 lg:border-l lg:border-rule lg:pl-12">
-          <div>
-            <h2 className="text-2xl font-semibold">Email directly</h2>
-            <p className="mt-2">
-              <a className="link break-all" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-            </p>
-          </div>
+          <aside className="space-y-10 lg:border-l lg:border-rule lg:pl-12">
+            <Reveal delay={100}>
+              <h2 className="text-2xl font-semibold">Email directly</h2>
+              <p className="mt-2">
+                <a className="link-draw break-all text-primary" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              </p>
+            </Reveal>
 
-          <div>
-            <h2 className="text-2xl font-semibold">A short introductory call</h2>
-            <p className="measure mt-2 text-slate">
-              Prefer a call? Say so in your message and suggest a few times that
-              work for you, including your time zone.
-            </p>
-          </div>
+            <Reveal delay={180}>
+              <h2 className="text-2xl font-semibold">A short introductory call</h2>
+              <p className="measure mt-2 text-slate">
+                Prefer a call? Say so in your message and suggest a few times
+                that work for you, including your time zone.
+              </p>
+            </Reveal>
 
-          <div>
-            <h2 className="text-2xl font-semibold">What happens next</h2>
-            <p className="measure mt-2 text-slate">
-              Replies come by email. If it looks like a fit, the next steps are
-              a conversation about the problem, an agreed scope, and a written
-              proposal before any work starts.
-            </p>
-          </div>
-        </aside>
-      </div>
-    </section>
+            <Reveal delay={260}>
+              <h2 className="text-2xl font-semibold">What happens next</h2>
+              <p className="measure mt-2 text-slate">
+                Replies come by email. If it looks like a fit, the next steps
+                are a conversation about the problem, an agreed scope, and a
+                written proposal before any work starts.
+              </p>
+            </Reveal>
+          </aside>
+        </div>
+      </section>
+    </>
   );
 }

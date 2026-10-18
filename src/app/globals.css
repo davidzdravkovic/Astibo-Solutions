@@ -1019,6 +1019,338 @@
     }
   }
 
+  /* —— Inner page opening —— */
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    background: #dfe6ef;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -1px 0;
+    height: 2px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: rule-in 1300ms cubic-bezier(0.22, 0.8, 0.2, 1) 500ms forwards;
+  }
+
+  .page-hero__grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, rgb(14 27 44 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(14 27 44 / 0.06) 1px, transparent 1px);
+    background-size: 3.5rem 3.5rem;
+    mask-image: radial-gradient(ellipse 80% 90% at 70% 40%, #000 20%, transparent 75%);
+  }
+
+  .page-hero__orb {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(50px);
+  }
+
+  .page-hero__orb--a {
+    top: -10rem;
+    right: -6rem;
+    width: 32rem;
+    height: 32rem;
+    background: radial-gradient(closest-side, rgb(31 79 216 / 0.32), transparent);
+    animation: orb-a 17s ease-in-out infinite alternate;
+  }
+
+  .page-hero__orb--b {
+    bottom: -14rem;
+    left: -8rem;
+    width: 28rem;
+    height: 28rem;
+    background: radial-gradient(closest-side, rgb(90 140 255 / 0.22), transparent);
+    animation: orb-b 21s ease-in-out infinite alternate;
+  }
+
+  @keyframes orb-a {
+    to {
+      transform: translate3d(-9rem, 6rem, 0) scale(1.2);
+    }
+  }
+
+  @keyframes orb-b {
+    to {
+      transform: translate3d(12rem, -5rem, 0) scale(1.15);
+    }
+  }
+
+  @keyframes rule-in {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .page-title {
+    max-width: 16ch;
+    font-size: clamp(2.5rem, 6.2vw, 5.25rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .page-title--compact {
+    max-width: 24ch;
+    font-size: clamp(2rem, 4.6vw, 3.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+  }
+
+  .page-title__word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+
+  .page-title__in {
+    display: inline-block;
+    transform: translateY(105%);
+    animation: word-rise 900ms cubic-bezier(0.22, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes word-rise {
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .page-lede {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: lede-in 900ms cubic-bezier(0.22, 0.8, 0.2, 1) forwards;
+  }
+
+  @keyframes lede-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .page-hero__art {
+    display: none;
+  }
+
+  @media (min-width: 64rem) {
+    .page-hero__art {
+      display: block;
+      padding-block: 3rem;
+    }
+  }
+
+  .page-hero__panel {
+    width: min(100%, 22rem);
+    margin-inline: auto;
+    padding: 2.25rem;
+    border-radius: 2.25rem;
+    background: #1b2b44;
+    box-shadow: 0 30px 60px -30px rgb(14 27 44 / 0.55);
+    animation: panel-float 7s ease-in-out infinite alternate;
+  }
+
+  @keyframes panel-float {
+    from {
+      transform: translate3d(0, 0, 0) rotate(-1.2deg);
+    }
+    to {
+      transform: translate3d(0, -14px, 0) rotate(1.2deg);
+    }
+  }
+
+  /* —— Rules that draw themselves, links that underline on hover —— */
+  .draw-rule {
+    position: relative;
+  }
+
+  .draw-rule::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: var(--foreground);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1200ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  .draw-rule.reveal--in::before {
+    transform: scaleX(1);
+  }
+
+  .link-draw {
+    padding-bottom: 2px;
+    background:
+      linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat,
+      linear-gradient(
+          color-mix(in srgb, currentColor 35%, transparent),
+          color-mix(in srgb, currentColor 35%, transparent)
+        )
+        0 100% / 100% 1px no-repeat;
+    transition: background-size 380ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  .link-draw:hover {
+    background-size:
+      100% 1.5px,
+      100% 1px;
+  }
+
+  /* Button whose fill rises from the bottom on hover */
+  .btn-sweep {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .btn-sweep::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: #173ba8;
+    transform: translateY(101%);
+    transition: transform 380ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  .btn-sweep:hover::before {
+    transform: translateY(0);
+  }
+
+  .on-dark .btn-sweep::before {
+    background: var(--blue-soft);
+  }
+
+  /* —— Reading light: lists and statements brighten as they cross the screen —— */
+  .sf-armed > .focus-item {
+    opacity: calc(0.38 + 0.62 * var(--f, 1));
+    will-change: opacity;
+  }
+
+  /* Only the content slides, so the rules between items stay aligned. */
+  .sf-armed > .focus-item > * {
+    transform: translate3d(calc((1 - var(--f, 1)) * 18px), 0, 0);
+  }
+
+  .sw-armed .sw-word {
+    opacity: 0.2;
+    transition: opacity 400ms ease;
+  }
+
+  .sw-armed .sw-word.is-on {
+    opacity: 1;
+  }
+
+  /* —— Whole-row links (work, writings) —— */
+  .work-row {
+    transition: opacity 320ms ease;
+  }
+
+  .work-row.reveal--in {
+    transition:
+      opacity 320ms ease,
+      transform 800ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  .work-row__cap {
+    transition:
+      transform 420ms cubic-bezier(0.22, 0.8, 0.2, 1),
+      color 250ms ease;
+  }
+
+  .go {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--foreground);
+    border-radius: 999px;
+    transition:
+      background-color 250ms ease,
+      border-color 250ms ease,
+      color 250ms ease;
+  }
+
+  .go svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    transition: transform 350ms cubic-bezier(0.22, 0.8, 0.2, 1);
+  }
+
+  @media (hover: hover) {
+    .work-list:hover > .work-row:not(:hover) {
+      opacity: 0.4;
+    }
+
+    .work-row:hover .work-row__cap {
+      color: var(--primary);
+      transform: translateX(14px);
+    }
+
+    .work-row:hover .go {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .work-row:hover .go svg {
+      transform: translateX(3px);
+    }
+
+    .line-item {
+      transition: transform 350ms cubic-bezier(0.22, 0.8, 0.2, 1);
+    }
+
+    .line-item:hover {
+      transform: translateX(10px);
+    }
+  }
+
+  /* —— Sliding nav indicator —— */
+  .nav-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--primary);
+    transition:
+      transform 420ms cubic-bezier(0.22, 0.8, 0.2, 1),
+      width 420ms cubic-bezier(0.22, 0.8, 0.2, 1),
+      opacity 200ms ease;
+  }
+
+  /* —— Footer wordmark: tone on tone, cropped at the bottom —— */
+  .footer-mark {
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    font-family: var(--font-heading);
+    font-size: clamp(5rem, 24vw, 21rem);
+    font-weight: 700;
+    line-height: 0.78;
+    letter-spacing: -0.05em;
+    color: #172a45;
+  }
+
+  .footer-mark span {
+    display: block;
+    padding-top: 0.1em;
+    margin-bottom: -0.05em;
+  }
+
   /* —— Scroll reveals —— */
   .reveal {
     opacity: 0;
@@ -1100,8 +1432,40 @@
     }
 
     .marquee__track,
-    .cta-band::before {
+    .cta-band::before,
+    .page-hero__orb,
+    .page-hero__panel {
       animation: none;
+    }
+
+    .page-hero::after {
+      animation: none;
+      transform: none;
+    }
+
+    .page-title__in {
+      animation: none;
+      transform: none;
+    }
+
+    .page-lede {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .draw-rule::before {
+      transform: none;
+      transition: none;
+    }
+
+    .nav-bar,
+    .btn-sweep::before,
+    .line-item,
+    .work-row__cap,
+    .go,
+    .go svg {
+      transition: none;
     }
 
     .art-float {

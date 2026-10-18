@@ -246,7 +246,7 @@ export function ContactForm() {
           )}
         </div>
 
-        <Button type="submit" size="lg">
+        <Button type="submit" size="lg" className="btn-sweep hover:bg-primary!">
           Send message
         </Button>
       </form>

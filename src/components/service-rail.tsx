@@ -45,19 +45,9 @@ function ServiceCard({
       <h3 className="service-card__title mt-6 font-heading font-semibold leading-tight">
         {item.name}
       </h3>
-      <p className="mt-4 grow text-[0.98rem] leading-relaxed text-blue-soft/85">
+      <p className="mt-4 text-[0.98rem] leading-relaxed text-blue-soft/85">
         {item.body}
       </p>
-      {item.href ? (
-        <Link
-          href={item.href}
-          draggable={false}
-          className="mt-7 inline-flex items-center gap-2 rounded-full border border-blue-soft/35 px-7 py-3 text-base font-medium text-paper transition-colors hover:bg-white/10"
-        >
-          Read more
-          <span aria-hidden="true">→</span>
-        </Link>
-      ) : null}
     </article>
   );
 }
@@ -223,8 +213,7 @@ export function ServiceRail({ items }: Props) {
             <div className="max-w-xl">
               <h2 className="text-4xl font-semibold md:text-6xl">Services</h2>
               <p className="rail-sub mt-3 text-lg text-blue-soft/90">
-                What we plan, design and build. Keep scrolling and the cards
-                slide across.
+                What we make — made with care.
               </p>
             </div>
             <Link href="/services/" className={cn(outlineLink, "shrink-0")}>
@@ -256,8 +245,7 @@ export function ServiceRail({ items }: Props) {
         <div className="max-w-xl">
           <h2 className="text-4xl font-semibold md:text-5xl">Services</h2>
           <p className="mt-3 text-lg text-blue-soft/90">
-            What we plan, design and build. Swipe through the cards; each links
-            to the full description.
+            What we make — made with care.
           </p>
         </div>
         <div className="flex shrink-0 items-center gap-2">

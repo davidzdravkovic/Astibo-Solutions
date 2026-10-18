@@ -1,4 +1,5 @@
-:HL["/Asibo-Solutions/_next/static/chunks/221eqd8bp3l8u.css","style"]
+:HL["/Astibo-Solutions/_next/static/chunks/339qm2753qezc.css","style"]
+:HL["/Astibo-Solutions/_next/static/chunks/1xv9mbbp7i1u5.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"TPxv_bNMXhzClFI18JSSy","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"W2LULuD6qeL0kXdVnkSTX","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PageHeader } from "@/components/page-header";
 import { projects, writings } from "@/content/site";
 
 type Props = {
@@ -31,22 +32,27 @@ export default async function WritingPage({ params }: Props) {
     : undefined;
 
   return (
-    <article className="wrap py-14 md:py-20">
-      <p className="text-sm font-medium text-slate">
-        <Link href="/writings/" className="underline-offset-4 hover:underline">
-          Writings
-        </Link>
-        <span aria-hidden="true"> / </span>
-        {post.category}
-        <span aria-hidden="true"> · </span>
-        {post.dateLabel}
-      </p>
-      <h1 className="mt-4 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.08]">
-        {post.title}
-      </h1>
-      <p className="measure mt-6 text-xl text-slate">{post.summary}</p>
+    <article>
+      <PageHeader
+        compact
+        title={post.title}
+        top={
+          <p>
+            <Link href="/writings/" className="link-draw">
+              Writings
+            </Link>
+            <span aria-hidden="true"> / </span>
+            {post.category}
+            <span aria-hidden="true"> · </span>
+            {post.dateLabel}
+          </p>
+        }
+      >
+        <p>{post.summary}</p>
+      </PageHeader>
 
-      <div className="measure mt-10 space-y-5 text-lg leading-relaxed">
+      <div className="wrap py-14 md:py-20">
+      <div className="measure space-y-6 text-lg leading-relaxed md:text-xl md:leading-relaxed">
         {post.paragraphs.map((paragraph) => (
           <p key={paragraph.slice(0, 48)}>{paragraph}</p>
         ))}
@@ -63,7 +69,6 @@ export default async function WritingPage({ params }: Props) {
                 rel="noopener noreferrer"
               >
                 {link.label}
-                <span aria-hidden="true"> →</span>
               </a>
             </li>
           ))}
@@ -80,6 +85,7 @@ export default async function WritingPage({ params }: Props) {
           </Link>
         ) : null}
       </p>
+      </div>
     </article>
   );
 }
